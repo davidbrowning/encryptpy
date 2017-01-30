@@ -5,6 +5,7 @@ from random import randint
 ##from fixed_points import half_interval_method
 from quotes import *
 import math
+import euclid_numbers
 
 public_key = public_key = 61488978258849141
 public_key_factors = () ## you will have to compute these
