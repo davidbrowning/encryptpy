@@ -41,9 +41,13 @@ def pascal_tri_row(n):
     return li
     pass
 
-#def pascal_tri_row_sum(n):
-#    ## your code
-#    pass
+def pascal_tri_row_sum(n):
+    answer = 0
+    for item in n:
+        answer += item
+    print answer
+    return answer
+    pass
 
 #def encrypt_char(c):
 #    ## your code
