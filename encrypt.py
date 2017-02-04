@@ -7,13 +7,47 @@ from quotes import *
 import math
 import euclid_numbers
 
-public_key = public_key = 61488978258849141
-public_key_factors = () ## you will have to compute these
+# found on stackoverflow by stefan edited by will ness 
+# I tried to use the algorithm I had written for euclid_numbers.py, 
+# but it got stuck in a loop somehow
 
-#code_separator = euclid_number(33)
+
+def prime_factors(n):
+    i = 2
+    factors = []
+    while i*i <= n:
+        if n % i:
+            i += 1
+        else:
+            n //= i
+            factors.append(i)
+    if n > 1:
+        factors.append(n)
+    return factors
+
+public_key = public_key = 61488978258849141
+factor_list = []
+factor_list = prime_factors(public_key)
+factor_list_set = set(factor_list)
+public_key_factors =  factor_list_set ## you will have to compute these 
+# use euclid_numbers.prime_factor(n, factor_list)
+
+code_separator = euclid_numbers.euclid_number(33)
 
 def choose_random_factor_index(num_public_key_factors):
     return randint(0, num_public_key_factors-1)
+
+
+def half_interval_method(f, a, b):
+    a_val = f(a)
+    b_val = f(b)
+    if a_val < 0 and b_val > 0:
+        return search_for_midpoint(f, a, b)
+    elif b_val < 0 and a_val > 0:
+        return search_for_midpoint(f, b, a)
+    else:
+        raise Exception('Values are not of oppositive sign')
+
 
 def is_even(num):
     if(num % 2 == 0):
@@ -42,12 +76,17 @@ def pascal_tri_row(n):
     pass
 
 def pascal_tri_row_sum(n):
-    answer = 0
-    for item in n:
-        answer += item
-    print answer
+    answer = 2
+    if(euclid_numbers.is_prime(n)):
+        k = pascal_tri_row(n)
+        for item in k:
+            if(item != 1):
+                answer += (item/n)
+    else:
+        answer = -1
     return answer
-    pass
+
+
 
 #def encrypt_char(c):
 #    ## your code

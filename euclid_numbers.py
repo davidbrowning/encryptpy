@@ -7,6 +7,7 @@
 #########################################
 
 import math
+import sys
 
 def is_prime(n):
     '''is_prime(n) ---> True if n is prime; False otherwise. '''
@@ -68,13 +69,19 @@ def compute_first_n_eucs(n):
 
     return eucs
 
+
+
+import itertools
 def prime_factor(n, factor_list):
+    print '.'
     if(is_prime(n)):
         factor_list.append(n);
         return n;
     else:
-        for num in xrange(2,n):
+        for num in itertools.count(2,n):
             if (n % num == 0):
+                print '.'
+                sys.stdout.flush()
                 return (prime_factor(n/num, factor_list)
                     and prime_factor(num, factor_list));
 
