@@ -2,7 +2,7 @@
 
 from random import randint
 ##from eucs import *
-##from fixed_points import half_interval_method
+from fixed_points import half_interval_method as him
 from quotes import *
 import math
 import euclid_numbers
@@ -29,24 +29,17 @@ public_key = public_key = 61488978258849141
 factor_list = []
 factor_list = prime_factors(public_key)
 factor_list_set = set(factor_list)
-public_key_factors =  factor_list_set ## you will have to compute these 
+factor_list = list(factor_list_set)
+public_key_factors =  factor_list ## you will have to compute these 
+num_public_key_factors = int(len(factor_list_set))
 # use euclid_numbers.prime_factor(n, factor_list)
 
-code_separator = euclid_numbers.euclid_number(33)
+code_separator = 2311  ##euclid_numbers.euclid_number(33)
 
 def choose_random_factor_index(num_public_key_factors):
     return randint(0, num_public_key_factors-1)
 
 
-def half_interval_method(f, a, b):
-    a_val = f(a)
-    b_val = f(b)
-    if a_val < 0 and b_val > 0:
-        return search_for_midpoint(f, a, b)
-    elif b_val < 0 and a_val > 0:
-        return search_for_midpoint(f, b, a)
-    else:
-        raise Exception('Values are not of oppositive sign')
 
 
 def is_even(num):
@@ -60,7 +53,7 @@ def pascal_tri_row(n):
     k = 0;
     li = []
     while (k < n):
-#        print '%d is less than %d' %(k, n) 
+#        #print '%d is less than %d' %(k, n) 
         li.append((math.factorial(n))/(math.factorial(k)*(math.factorial(n - k))))
         k += 1;
 
@@ -88,18 +81,35 @@ def pascal_tri_row_sum(n):
 
 
 
-#def encrypt_char(c):
-#    ## your code
-#    pass
+def encrypt_char(c):
+    pi = choose_random_factor_index(num_public_key_factors)
+    p = public_key_factors[pi]
+    s = pascal_tri_row_sum(p)
+    z = math.floor(him(lambda x: (x**9 - s + x)/2, 0, 1000))
+    rand_factor = str(pi)
+    print(pi)
+    pub_key_fac = str(public_key_factors[pi])
+    tri_sum = str(s)
+    algo_hash = str(int(z + ord(c)))
+    print(algo_hash)
+    code_s = str(code_separator)
+    full_string = rand_factor + code_s + algo_hash + code_s 
+    return full_string
+    pass
 
-#def encrypt_text(txt):
-#    enc = ''
-#    for c in txt: enc += encrypt_char(c)
-#    return enc
+def encrypt_text(txt):
+    enc = ''
+    for c in txt: enc += encrypt_char(c)
+    return enc
     
-#def decrypt_text(txt):
-#    ## your code
-#    pass
+def decrypt_text(txt):
+    separator_string = str(code_separator)
+    separator_length = len(separator_string)
+    print separator_string
+    text_length = len(txt)
+    ## TODO use regex to find separator, then replace with commas. 
+    ### Parsing should then be a breeze
+    pass
         
 
 
