@@ -31,3 +31,6 @@ print(encrypt.encrypt_char('d'))
 print(encrypt.encrypt_text('abd'));
 my_string = encrypt.encrypt_text('abd')
 print(encrypt.decrypt_text(my_string))
+other_string = encrypt.encrypt_text('I love you sierra')
+print('secret message in numbers: %s' % other_string)
+print('decrypted message: %s' % encrypt.decrypt_text(other_string))

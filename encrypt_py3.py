@@ -2,7 +2,7 @@
 
 from random import randint
 from eucs_py3 import *
-from fixed_points_py3 import half_interval_method
+from fixed_points_py3 import half_interval_method as him
 from quotes import *
 
 public_key = 614889782588491410

@@ -50,7 +50,7 @@ def euclid_number(i):
     ## your code here
     prime = 2;
     eu_num = 2;
-    for num in xrange(i):
+    for num in range(i):
         prime = next_prime_after(prime);
         eu_num = eu_num*prime; 
     
@@ -64,7 +64,7 @@ def compute_first_n_eucs(n):
     ## your code here? if the above functions
     ## are implimented correctly, it already
     ## works. 
-    for eu_num in xrange(n):
+    for eu_num in range(n):
         eucs.append(euclid_number(eu_num));
 
     return eucs
@@ -95,7 +95,7 @@ def prime_factors_of(n):
 def tabulate_euc_factors(n):
     '''returns a list of 3-tuples (i, euc, factors).'''
     euc_factors = []
-    for i in xrange(n+1):
+    for i in range(n+1):
         tup = (i, euclid_number(i), prime_factors_of(euclid_number(i)));
         euc_factors.append(tup);                 
     return euc_factors

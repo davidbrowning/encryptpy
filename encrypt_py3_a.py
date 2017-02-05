@@ -5,7 +5,7 @@ from random import randint
 from fixed_points import half_interval_method as him
 from quotes import *
 import math
-import euclid_numbers
+import euclid_numbers_py3
 
 # found on stackoverflow by stefan edited by will ness 
 # I tried to use the algorithm I had written for euclid_numbers.py, 
