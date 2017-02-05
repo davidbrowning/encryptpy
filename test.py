@@ -1,6 +1,7 @@
 #!/bin/python
 
 import encrypt
+import encrypt_py3
 import euclid_numbers
 print("Testing pascal_tri_row...");
 i = 0
